@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="News Portal" />
+    <meta name="author" content="Eris Susanto" />
+
+    <link href="https://cdn.pixabay.com/photo/2012/04/14/14/30/newspaper-34126__480.png" type="image/x-icon" rel="shortcut icon" />
+    <title>News Portal</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        .form-floating:focus-within {
+          z-index: 2;
+        }
+    </style>
+  </head>
+  <body style="background-color: gainsboro;">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark sticky-top navbar-expand-lg bg-dark shadow">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="https://cdn.pixabay.com/photo/2012/04/14/14/30/newspaper-34126__480.png" alt="" width="50"><span class="ms-2">Admin</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <div class="me-auto"></div>
+          <ul class="navbar-nav mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Category</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logs</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Hai, <span>Broo</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="nav-item">
+                  <a @click.prevent="handlerLogout" class="dropdown-item" href="#">
+                    <i class="fa-solid fa-right-from-bracket"></i><i class="fa-solid fa-person-running"></i>  Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Login -->
+    <div class="container" id="login-gate-section">
+        <div class="col">
+            <div class="text-center mt-5">
+              <h1>Welcome</h1>
+              <p>By sign-in to your account, you can explore more information. If you don't have account yet, you have to sign-up first, then continue signing in.</p>
+            </div>
+            <div class="d-flex flex-row justify-content-evenly">
+              <div class="col-lg-5 col-md-8 col-sm-12">
+                <form id="register-form">
+                  <div>
+                    <h2>Sign Up</h2>
+                  </div>
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Name" required>
+                    <label for="floatingName">Username</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" required>
+                    <label for="floatingEmail">Email address</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="number" class="form-control" id="floatingPhone" placeholder="Phone Number">
+                    <label for="floatingPhone">Phone Number</label>
+                  </div>
+                  <div class="form-floating">
+                    <textarea class="form-control" id="floatingAddress" placeholder="Address"></textarea>
+                    <label for="floatingAddress">Address</label>
+                  </div>
+                    <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Sign up</button>
+                </form>
+              </div>
+              <div class="col-lg-5 col-md-8 col-sm-12">
+                <form id="login-form">
+                  <div>
+                    <h2>Log In</h2>
+                  </div>
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingEmailLog" placeholder="name@example.com">
+                    <label for="floatingEmailLog">Email address</label>
+                  </div>
+                  <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPasswordLog" placeholder="Password">
+                    <label for="floatingPasswordLog">Password</label>
+                  </div>
+                    <button class="w-100 btn btn-lg btn-primary mt-5" type="submit">Login</button>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login -->
+
+    <!-- Home -->
+    <div class="container-fluid">
+        <div class="row">
+          <main class="col-md-12 px-md-4">
+
+            <!-- Dashboard -->
+            <div class="dashboard mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">News</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">0</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">Categories</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">0</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Dashboard -->
+            
+            <!-- News -->
+            <div class="news mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                  <h1 class="h2">News</h1>
+                  <button type="button" class="btn btn-sm btn-outline-primary">
+                    <i class="fa-regular fa-square-plus"></i>
+                    New Post
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col" width="180px">Image</th>
+                        <th scope="col" width="250px">Content</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" width="50px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Contoh Title</td>
+                        <td>
+                            <img src="https://cdn.pixabay.com/photo/2018/06/12/19/59/football-3471371__480.jpg" class="img-fluid" alt="">
+                        </td>
+                        <td>Contoh Content</td>
+                        <td>Contoh Category</td>
+                        <td>Contoh Author</td>
+                        <td>
+                            <select name="" id="">
+                                <option value="">Active</option>
+                                <option value="">Inactive</option>
+                                <option value="">Archive</option>
+                            </select>
+                        </td>
+                        <td>
+                          <a href="" id="edit-news">
+                            <span class="text-primary">
+                              <i class="fa-solid fa-pen"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <!-- End News -->
+
+            <!-- New Post -->
+            <div class="new-post mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                    <h1 class="h2">New Post</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mx-auto">
+                    <form class="needs-validation" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="title" class="form-label">Title</label>
+                          <input type="text" class="form-control" placeholder="" value="" required>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="category" class="form-label">Category</label>
+                          <select class="form-select" placeholder="Username" required>
+                            <option value="" selected disabled>-- Select Category --</option>
+                            <option value="">Ok</option>
+                            <option value="">Yup</option>
+                          </select>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="content" class="form-label">Content</label>
+                          <input type="text" class="form-control" placeholder="" required>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="image" class="form-label">Image URL</label>
+                          <input type="text" class="form-control" id="address" placeholder="" required>
+                        </div>
+            
+                      <hr class="my-4">
+
+                      <div class="col-6">
+                          <button class="w-100 btn btn-outline-secondary btn-lg">Cancel</button>
+                      </div>
+                        
+                      <div class="col-6">
+                          <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End New Post -->
+
+            <!-- Edit Post -->
+            <div class="edit-post mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                    <h1 class="h2">Edit Post</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mx-auto">
+                    <form class="needs-validation" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="title" class="form-label">Title</label>
+                          <input type="text" class="form-control" placeholder="" value="" required>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="category" class="form-label">Category</label>
+                          <select class="form-select" placeholder="Username" required>
+                            <option value="" selected disabled>-- Select Category --</option>
+                            <option value="">Ok</option>
+                            <option value="">Yup</option>
+                          </select>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="content" class="form-label">Content</label>
+                          <input type="text" class="form-control" placeholder="" required>
+                        </div>
+            
+                        <div class="col-12">
+                          <label for="image" class="form-label">Image URL</label>
+                          <input type="text" class="form-control" id="address" placeholder="" required>
+                        </div>
+            
+                      <hr class="my-4">
+            
+                      <div class="col-6">
+                        <button class="w-100 btn btn-outline-secondary btn-lg">Cancel</button>
+                      </div>
+                      
+                      <div class="col-6">
+                        <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Edit Post -->
+
+            <!-- Category -->
+            <div class="category mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                  <h1 class="h2">Category</h1>
+                  <button type="button" class="btn btn-sm btn-outline-primary">
+                    <i class="fa-regular fa-square-plus"></i>
+                    New Category
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" width="50px"></th>
+                        <th scope="col" width="50px"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Contoh Category</td>
+                        <td>
+                          <a href="" id="edit-category">
+                            <span class="text-primary">
+                              <i class="fa-solid fa-pen"></i>
+                            </span>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="" id="delete-category">
+                            <span class="text-danger">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <!-- End Category -->
+
+            <!-- New Category -->
+            <div class="new-category mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                    <h1 class="h2">New Category</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mx-auto">
+                    <form class="needs-validation" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" class="form-control" placeholder="" value="" required>
+                        </div>
+            
+                      <hr class="my-4">
+
+                      <div class="col-6">
+                          <button class="w-100 btn btn-outline-secondary btn-lg">Cancel</button>
+                      </div>
+                        
+                      <div class="col-6">
+                          <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End New Category -->
+
+            <!-- Edit Category -->
+            <div class="edit-category mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                    <h1 class="h2">Edit Category</h1>
+                </div>
+                <div class="col-md-4 col-lg-6 mx-auto">
+                    <form class="needs-validation" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="name" class="form-label">Name</label>
+                          <input type="text" class="form-control" placeholder="" value="" required>
+                        </div>
+            
+                      <hr class="my-4">
+
+                      <div class="col-6">
+                          <button class="w-100 btn btn-outline-secondary btn-lg">Cancel</button>
+                      </div>
+                        
+                      <div class="col-6">
+                          <button class="w-100 btn btn-primary btn-lg" type="submit">Submit</button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Edit Category -->
+
+            <!-- History -->
+            <div class="history mb-2">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+                  <h1 class="h2">Logs</h1>
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-striped table-sm align-middle">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title Nes</th>
+                        <th scope="col" width="250px">Description</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Updated By</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Contoh Title</td>
+                        <td>Contoh Description</td>
+                        <td>Contoh Date</td>
+                        <td>Contoh Author</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <!-- End History -->
+          </main>
+        </div>
+    </div>
+    <!-- End Home -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
